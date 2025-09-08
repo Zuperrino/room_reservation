@@ -1,7 +1,13 @@
-from sqlalchemy import Column, String, Text
+from fastapi import APIRouter
 
-from app.core.db import Base
+from app.crud.meeting_room import create_meeting_room
+from app.schemas.meeting_room import MeetingRoomCreate
 
-class MeetingRoom(Base):
-    name =  Column(String(100), unique=True, nullable=False)
-    description = Column(Text)
+router = APIRouter()
+
+@router.post('/meeting_rooms/')
+async def create_meeting_room(
+        meeting_room: MeetingRoomCreate,
+):
+    new_room = await create_meeting_room(meeting_room)
+    return new_room
