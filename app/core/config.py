@@ -1,11 +1,15 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
+from pydantic import EmailStr
 
 
 class Settings(BaseSettings):
     app_title: str = 'Бронирование переговорок'
     description: str = 'Стандартное описание'
-    database_url: str
-
+    database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
+    secret: str = 'SECRET'
+    first_superuser_email: Optional[EmailStr] = None
+    first_superuser_password: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file='.env')
 
