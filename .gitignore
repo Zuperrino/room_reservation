@@ -9,7 +9,7 @@ __pycache__/
 
 # .idea Pycharm
 .idea/
-
+*.db
 
 # Distribution / packaging
 .Python
